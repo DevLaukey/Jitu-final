@@ -23,7 +23,7 @@ function Footer() {
         </div>
         <div className="px-4 sm:w-1/2 md:w-1/4 mt-4 md:mt-0">
           <h6 className="font-bold mb-2">Socials</h6>
-          <ul className="flex space-x-6">
+          <ul classNameName="flex space-x-6">
             <li>
               <FaFacebookF />
             </li>

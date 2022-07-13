@@ -3,9 +3,9 @@ import logo from "./logo.jpg";
 import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 function Navbar() {
   return (
-    <header className="flex space-x-4 items-center justify-between align-middle  p-4 bg-blue-400">
-      <div className="text-center ">
-        <img className="aspect-square w-14" src={logo} alt="" />
+    <header classNameName="flex space-x-4 items-center justify-between align-middle  p-4 bg-blue-400">
+      <div classNameName="text-center ">
+        <img classNameName="aspect-square w-14" src={logo} alt="" />
       </div>
       <div className="flex items-center justify-center">
         <div className="input-group flex  items-stretch w-full  rounded">
@@ -25,7 +25,7 @@ function Navbar() {
         </div>
       </div>
       <div>
-        <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
+        <ul classNameName="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
           <li>csdc</li>
           <li>csdc</li>
           <li>csdc</li>
