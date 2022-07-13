@@ -5,8 +5,7 @@ function App() {
   return (
     <div className="">
       <Navbar />
-      body
-      <Footer />
+      body <Footer />
     </div>
   );
 }
