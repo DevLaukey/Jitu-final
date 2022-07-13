@@ -5,9 +5,10 @@ import ProductGrid from "./components/products/productGrid";
 
 function App() {
   return (
-    <div className="relative">
+    <div className="">
       <Navbar />
        <ProductGrid />
+
       <Footer />
     </div>
   );

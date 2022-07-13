@@ -8,6 +8,7 @@ function App() {
     <div className="relative">
       <Navbar />
        <ProductGrid />
+
       <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import logo from "./logo.jpg";
 import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 function Navbar() {
   return (
-    <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle  p-4 bg-blue-400">
+    <header className="flex space-x-4 items-center justify-between align-middle  p-4 bg-blue-400">
       <div className="text-center ">
         <img className="aspect-square w-14" src={logo} alt="" />
       </div>
