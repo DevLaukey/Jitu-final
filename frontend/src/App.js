@@ -1,4 +1,4 @@
-import ProductGrid from "./components/products/productGrid";
+import ProductGrid from "./components/Products/productGrid";
 
 function App() {
   return (
