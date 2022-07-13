@@ -15,14 +15,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./components/logins/SignUp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const authenicated = false;
+const authenicated = true;
 
 root.render(
   <Provider store={store}>
     <Router>
       <Routes>
         <Route path="/" element={authenicated ? <App /> : <Login />} />
+<<<<<<< HEAD
         <Route path="/login" element={<Login />} />
+=======
+>>>>>>> fae1151db8f320d88c3c8af1a834731a2fa742ef
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
