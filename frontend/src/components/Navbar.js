@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.jpg";
+import logo from "./assets/logo.jpg";
 import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 function Navbar() {
   return (

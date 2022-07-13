@@ -3,9 +3,10 @@ import Navbar from "./components/Navbar";
 
 import ProductGrid from "./components/products/productGrid";
 
-function App() {
+function App() { 
   return (
     <div className="relative">
+      
       <Navbar />
        <ProductGrid />
       <Footer />
