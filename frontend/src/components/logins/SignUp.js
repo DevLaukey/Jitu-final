@@ -62,7 +62,7 @@ function SignUp() {
           Already have an account?
           <Link
             className="no-underline ml-3 border-b border-blue text-blue"
-            to="/login"
+            to="/"
           >
             Login
           </Link>

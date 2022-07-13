@@ -15,13 +15,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./components/logins/SignUp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const authenicated = true;
 
 root.render(
   <Provider store={store}>
     <Router>
       <Routes>
-        <Route path="/" element={authenicated ? <App /> : <Login />} />
+        <Route path="/" element={<App />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
