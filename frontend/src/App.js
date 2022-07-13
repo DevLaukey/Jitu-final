@@ -1,8 +1,9 @@
+import ProductGrid from "./components/products/productGrid";
 
 function App() {
   return (
     <div className="">
-     Running
+      <ProductGrid />
     </div>
   );
 }
