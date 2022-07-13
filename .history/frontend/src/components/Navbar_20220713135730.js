@@ -17,7 +17,7 @@ function Navbar() {
             aria-describedby="button-addon2"
           />
           <span
-            class="input-group-text flex items-center px-2 py-1.5 text-base font-normal text-gray-200 text-center whitespace-nowrap rounded"
+            class="input-group-text flex items-center px-2 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded"
             id="basic-addon2"
           >
             <BsSearch />
@@ -25,13 +25,13 @@ function Navbar() {
         </div>
       </div>
       <div>
-        <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
+        <ul className="hidden text-white py-1.5 md:flex space-x-3 text-center">
           <li>csdc</li>
           <li>csdc</li>
           <li>csdc</li>
         </ul>
       </div>
-      <div class="space-x-4 text-gray-200 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
+      <div class="space-x-4 text-gray-700 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
         <BsCart2 />
         <BsPersonCircle />
       </div>

@@ -17,7 +17,7 @@ function Navbar() {
             aria-describedby="button-addon2"
           />
           <span
-            class="input-group-text flex items-center px-2 py-1.5 text-base font-normal text-gray-200 text-center whitespace-nowrap rounded"
+            class="input-group-text flex items-center px-2 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded"
             id="basic-addon2"
           >
             <BsSearch />
