@@ -13,7 +13,7 @@ CREATE TABLE Users
     isActive BIT DEFAULT 0,
     isDeleted BIT DEFAULT 0,
 )
-go
+GO
 
 CREATE OR ALTER PROCEDURE verify_exists
     @email VARCHAR(100)
@@ -25,21 +25,30 @@ BEGIN
     WHERE email = @email
 END
 
-GO 
+GO
 
 CREATE OR ALTER PROCEDURE insert_user
     (
     @fullName VARCHAR(100),
-    @email VARCHAR(100),
     @telephone VARCHAR(20),
     @password VARCHAR(255))
 AS
 BEGIN
     INSERT INTO Users
         (fullName, email, telephone, [password])
-    VALUES(@fullName, @email, @telephone, @password)
+    VALUES(@fullName, @telephone, @password)
 END
+Go
 
-go
-
-SELECT * from Users
+CREATE OR ALTER PROCEDURE update_user
+    (
+    @fullName VARCHAR(100),
+    @email VARCHAR(100),
+    @telephone VARCHAR(20)
+)
+AS
+BEGIN
+    UPDATE Users SET fullName=@fullName, telephone=@telephone
+WHERE email=@email
+END
+GO
