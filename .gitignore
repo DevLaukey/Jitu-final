@@ -17,3 +17,4 @@ server/node_modules/simple-update-notifier/node_modules/.bin/semver
 server/node_modules/simple-update-notifier/node_modules/.bin/semver.cmd
 server/node_modules/simple-update-notifier/node_modules/.bin/semver.ps1
 .history
+.gitignore
