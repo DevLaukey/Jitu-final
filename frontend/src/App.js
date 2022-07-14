@@ -6,7 +6,6 @@ import Slider from "./components/Slider/Slider";
 function App() { 
   return (
     <div className="relative">
-      
       <Navbar />
       <Slider />
       <ProductGrid />

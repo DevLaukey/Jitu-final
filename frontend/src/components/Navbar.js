@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./assets/logo.jpg";
 import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 function Navbar() {
+  const [toggle, setToggle] = useState(false);
   return (
-    <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle  p-4 bg-blue-400">
+    <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
       <div className="text-center ">
         <img className="aspect-square w-14" src={logo} alt="" />
       </div>
@@ -33,7 +35,46 @@ function Navbar() {
       </div>
       <div className="space-x-4 text-gray-200 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
         <BsCart2 />
-        <BsPersonCircle />
+        <div class="dropdown flex relative">
+          <BsPersonCircle />
+          <svg
+            class="fill-current h-4 w-4 focus:block"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            onClick={() => setToggle(!toggle)}
+          >
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+          </svg>
+        </div>
+        <ul
+          className={
+            toggle ? "  text-gray-700 right-0 mr-3 mt-12 fixed " : "hidden"
+          }
+        >
+          <li classNames="">
+            <Link
+              to="/Login"
+              className="rounded-t  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+            >
+              Log in
+            </Link>
+          </li>
+          <li className="">
+            <Link
+              to="/signup"
+              className=" text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+            >
+              Register
+            </Link>
+          </li>
+          <li className="">
+            <p
+              className="rounded-b  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+            >
+              Upload a profile Photo
+            </p>
+          </li>
+        </ul>
       </div>
     </header>
   );
