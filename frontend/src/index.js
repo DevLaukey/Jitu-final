@@ -20,16 +20,8 @@ root.render(
   <Provider store={store}>
     <Router>
       <Routes>
-<<<<<<< HEAD
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
-=======
-        <Route path="/" element={authenicated ? <App /> : <Login />} />
-<<<<<<< HEAD
-        <Route path="/login" element={<Login />} />
-=======
->>>>>>> fae1151db8f320d88c3c8af1a834731a2fa742ef
->>>>>>> a824972843311199d0f0090db45df74ee1591edf
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
