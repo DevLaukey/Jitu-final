@@ -4,6 +4,24 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
+	getusers: async (req, res) => {
+		try {
+			const users = await exec("all_users");
+			return res.status(201).json({
+				status: 201,
+				success: true,
+				message: `all users retrieved`,
+				total_users: users.recordset.length,
+			});
+		} catch (error) {
+			console.log(error.message);
+			return res.status(500).json({
+				status: 500,
+				success: false,
+				message: error.message,
+			});
+		}
+	},
 	signup: async (req, res) => {
 		const { fullName, email, telephone, password } = req.body;
 
