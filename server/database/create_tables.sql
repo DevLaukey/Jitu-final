@@ -11,7 +11,7 @@ CREATE TABLE Users
 )
 GO
 
-CREATE TABLE categories
+CREATE TABLE Categories
 (
     categoryId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     categoryName VARCHAR(100)
@@ -27,5 +27,25 @@ CREATE TABLE Products
     [description] TEXT,
     inStock BIT DEFAULT 1 ,-- 1 as true and 0 as false
     categoryId INT NOT NULL FOREIGN KEY REFERENCES categories(categoryId)
+)
+GO
+
+CREATE TABLE Orders
+(
+    OrderId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    OrderDate DATETIME NOT NULL DEFAULT getdate(),
+    UserId INT NOT NULL FOREIGN KEY REFERENCES Users(userId),
+    TotalAmount decimal(12, 2) NULL DEFAULT 0,
+)
+GO
+
+
+CREATE TABLE Order_Product
+(
+    Order_Product_Id INT IDENTITY(1,1) NOT NULL,
+    OrderId INT NOT NULL FOREIGN KEY REFERENCES Orders(OrderId),
+    ProductId INT NOT NULL FOREIGN KEY REFERENCES Products(productID),
+    UnitPrice DECIMAL(12, 2) NOT NULL,
+    Quantity INT NOT NULL,
 )
 GO
