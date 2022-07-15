@@ -20,9 +20,9 @@ post http://localhost:3005/products/add-product
 Content-Type: application/json
 
 {
-    "imageUrl":"https://media.istockphoto.com/photos/comfortable-recliner-massage-seat-isolated-on-white-background-picture-id1047601100?s=612x612",
-    "productName":"Recliners",
-    "price":"50000",
-    "description":"New leather seat with a recliner system",
+    "imageUrl":"https://images.unsplash.com/photo-1512212621149-107ffe572d2f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8c29mYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+    "productName":"Soft silk 2-seater",
+    "price":"35500",
+    "description":"This is your ideal resting compaion. An all time chair to suit you.",
     "categoryId": 1
 }

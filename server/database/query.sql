@@ -14,6 +14,7 @@ CREATE TABLE Users
     isDeleted BIT DEFAULT 0,
 )
 go
+SELECT * FROM Users
 
 CREATE OR ALTER PROCEDURE verify_exists
     @email VARCHAR(100)
@@ -113,3 +114,4 @@ BEGIN
 INSERT INTO categories VALUES(@categoryName)
 END
 
+SELECT * FROM Products
