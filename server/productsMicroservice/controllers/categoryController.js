@@ -1,20 +1,20 @@
 const { exec } = require("../../authMicroservice/helpers/db");
 
 module.exports = {
-	allProducts: async (req, res) => {
-		const allProducts = await exec("all_products")
+	allCategories: async (req, res) => {
+		await exec("all_categories")
 			.then((result) =>
 				result.recordset.length
 					? res.status(200).json({
 							status: 201,
 							success: true,
 							message: "Success",
-							total_products: result.recordset.length,
+							all_categories: result.recordset.length,
 					  })
 					: res.status(404).json({
 							status: 405,
 							success: false,
-							message: "No products Found",
+							message: "No categories Found",
 					  })
 			)
 			.catch((err) => {
@@ -25,22 +25,27 @@ module.exports = {
 				});
 			});
 	},
-	addProducts: async function (req, res) {
-		const { imageUrl, productName, price, description, categoryId } = req.body;
+	addCategory: async function (req, res) {
+		const { categoryName } = req.body;
 		try {
-			const product = await exec("add_products", {
-				imageUrl,
-				productName,
-				price,
-				description,
-				categoryId,
+			const cat_exists = await exec("verify_category", {
+				categoryName,
 			});
 
-			if (product) {
+			if (cat_exists.recordset.length > 0) {
+				return res.status(401).json({
+					status: 201,
+					success: true,
+					message: "Failed, category already exists",
+				});
+			} else {
+				await exec("add_category", {
+					categoryName,
+				});
 				return res.status(201).json({
 					status: 201,
 					success: true,
-					message: "Success, product added",
+					message: "Success, category added",
 				});
 			}
 		} catch (err) {
@@ -51,22 +56,19 @@ module.exports = {
 			});
 		}
 	},
-	updateProducts: async function (req, res) {
-		const { imageUrl, productName, price, description, categoryId } = req.body;
+	updateCategory: async function (req, res) {
+		const { categoryName, categoryId } = req.body;
 		try {
-			const product = await exec("update_products", {
-				imageUrl,
-				productName,
-				price,
-				description,
+			const category = await exec("update_category", {
 				categoryId,
+				categoryName,
 			});
 
-			if (product) {
+			if (category) {
 				return res.status(201).json({
 					status: 201,
 					success: true,
-					message: "Success, product updated",
+					message: "Success, category updated",
 				});
 			}
 		} catch (err) {
