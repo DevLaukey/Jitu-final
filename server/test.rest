@@ -9,4 +9,20 @@ Content-Type: application/json
 }
 
 ####
-get http://localhost:3011
+get http://localhost:3005
+
+
+###
+get http://localhost:3005/products
+
+###
+post http://localhost:3005/products/add-product
+Content-Type: application/json
+
+{
+    "imageUrl":"https://media.istockphoto.com/photos/comfortable-recliner-massage-seat-isolated-on-white-background-picture-id1047601100?s=612x612",
+    "productName":"Recliners",
+    "price":"50000",
+    "description":"New leather seat with a recliner system",
+    "categoryId": 1
+}

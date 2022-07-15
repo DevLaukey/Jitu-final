@@ -42,4 +42,59 @@ END
 
 go
 
-SELECT * from Users
+CREATE TABLE Products(
+    productID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    imageUrl VARCHAR(255), 
+    productName VARCHAR(100),
+    price SMALLMONEY,
+    [description] TEXT,
+-- 1 as true and 0 as false
+    inStock BIT DEFAULT 1 ,
+    categoryId INT NOT NULL FOREIGN KEY REFERENCES categories(categoryId)
+)
+
+go
+
+CREATE OR ALTER PROCEDURE all_products
+AS
+BEGIN
+SELECT * FROM Products
+END
+
+go
+
+CREATE OR ALTER  PROCEDURE add_products
+(
+    @imageUrl VARCHAR(255), 
+    @productName VARCHAR(100),
+    @price SMALLMONEY,
+    @description TEXT,
+    @categoryId INT
+)
+AS
+BEGIN
+INSERT INTO Products(
+    imageUrl, 
+    productName,
+    price,
+    [description],
+    categoryId
+) VALUES (
+    @imageUrl, @productName, @price , @description, @categoryId
+)
+END
+
+CREATE TABLE categories(
+    categoryId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    categoryName VARCHAR(100)
+)
+
+GO
+
+CREATE OR ALTER PROCEDURE add_category 
+@categoryName VARCHAR(100)
+AS
+BEGIN
+INSERT INTO categories VALUES(@categoryName)
+END
+
