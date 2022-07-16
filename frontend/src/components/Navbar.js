@@ -4,6 +4,8 @@ import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
+
+  const isAdmin = false;
   return (
     <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
       <div className="text-center ">
@@ -27,11 +29,19 @@ function Navbar() {
         </div>
       </div>
       <div>
-        <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
-          <li>csdc</li>
-          <li>csdc</li>
-          <li>csdc</li>
-        </ul>
+        {isAdmin ? (
+          <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
+            <li>csdc</li>
+            <li>csdc</li>
+            <li>csdc</li>
+          </ul>
+        ) : (
+          <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
+            <li>csdc</li>
+            <li>csdc</li>
+            <li>csdc</li>
+          </ul>
+        )}
       </div>
       <div className="space-x-4 text-gray-200 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
         <BsCart2 />
@@ -68,9 +78,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="">
-            <p
-              className="rounded-b  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-            >
+            <p className="rounded-b  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
               Upload a profile Photo
             </p>
           </li>
