@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
 
-  const isAdmin = false;
+  const isAdmin = true;
   return (
     <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
       <div className="text-center ">
-        <img className="aspect-square w-14" src={logo} alt="" />
+        <Link to="/">
+          <img className="aspect-square w-14" src={logo} alt="" />
+        </Link>
       </div>
       <div className="flex items-center justify-center">
         <div className="input-group flex  items-stretch w-full  rounded">
@@ -31,9 +33,8 @@ function Navbar() {
       <div>
         {isAdmin ? (
           <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
-            <li>csdc</li>
-            <li>csdc</li>
-            <li>csdc</li>
+            <Link to="/add-product">Add Product</Link>
+            <Link to="/add-category">Add Category</Link>
           </ul>
         ) : (
           <ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">

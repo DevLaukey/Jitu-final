@@ -3,15 +3,15 @@ import Navbar from "./components/Navbar";
 import ProductGrid from "./components/products/productGrid";
 import Slider from "./components/Slider/Slider";
 import AddProduct from "./components/admin/AddProduct"
+import AddCategory from "./components/admin/AddCategory";
 function App() { 
   return (
     <div className="relative">
-      <Navbar />
       
-      <AddProduct />
-      {/* <Slider />
+      {/* <AddProduct /> */}
+      {/* <AddCategory/> */}
+      <Slider />
       <ProductGrid />
-      <Footer /> */}
     </div>
   );
 }

@@ -121,7 +121,40 @@ function AddProduct() {
             </td>
             <td> 7-seater Leather</td>
             <td>1000</td>
-            <td className="line-clamp-1"> New leather seat with a recliner system</td>
+            <td className="line-clamp-1">
+              New leather seat with a recliner system
+            </td>
+            <td>In Stock</td>
+            <td>Sofa</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td className="text-blue-400 line-clamp-1">
+              <a href="https://tailwindcss.com/_next/static/media/social-square.b622e290e82093c36cca57092ffe494f.jpg">
+                https://tailwindcss.com/_next/static/media/social-square.b622e290e82093c36cca57092ffe494f.jpg
+              </a>
+            </td>
+            <td> 7-seater Leather</td>
+            <td>1000</td>
+            <td className="line-clamp-1">
+              New leather seat with a recliner system
+            </td>
+            <td>In Stock</td>
+            <td>Sofa</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td className="text-blue-400 line-clamp-1">
+              <a href="https://tailwindcss.com/_next/static/media/social-square.b622e290e82093c36cca57092ffe494f.jpg">
+                https://tailwindcss.com/_next/static/media/social-square.b622e290e82093c36cca57092ffe494f.jpg
+              </a>
+            </td>
+            <td> 7-seater Leather</td>
+            <td>1000</td>
+            <td className="line-clamp-1">
+             
+              New leather seat with a recliner system
+            </td>
             <td>In Stock</td>
             <td>Sofa</td>
           </tr>
