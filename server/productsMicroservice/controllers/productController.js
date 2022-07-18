@@ -77,4 +77,8 @@ module.exports = {
 			});
 		}
 	},
+	searchProducts:  function (req, res) {
+		const { name } = req.query;
+		console.log(name);
+	}
 };

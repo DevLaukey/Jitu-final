@@ -2,11 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const { allCategories, addCategory, updateCategory } = require("../controllers/categoryController");
-const { allProducts, addProducts, updateProducts } = require("../controllers/productController");
+const { allProducts, addProducts, updateProducts, searchProducts } = require("../controllers/productController");
 
 router.get("/products", allProducts);
 router.post("/add-product", addProducts);
 router.post("/edit-product", updateProducts);
+router.post("/search", searchProducts);
+
 
 router.get("/categories", allCategories);
 router.post("/add-category", addCategory);
