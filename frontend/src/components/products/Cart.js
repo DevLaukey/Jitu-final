@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import CartProduct from "./CartProduct";
 
 function Cart() {
-  let itemsCount = useSelector((state) => state.cart.count);
+  let itemsCount = 4;
+    // useSelector((state) => state.cart.count);
   const totalPrice = 4040;
   return (
     <div class="container mx-auto ">

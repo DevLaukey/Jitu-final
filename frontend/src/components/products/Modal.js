@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toogleState } from "../../redux/slices/ProductReducer";
 
 function Modal() {
-  const showModal = useSelector((state) => state.modal);
+  const showModal = false;
   const dispatch = useDispatch();
 
   return (
@@ -22,7 +21,7 @@ function Modal() {
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => {
-                      dispatch(toogleState());
+                      // dispatch(toogleState());
                     }}
                   >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -46,7 +45,7 @@ function Modal() {
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
-                      dispatch(toogleState());
+                      // dispatch(toogleState());
                     }}
                   >
                     Close
@@ -55,7 +54,7 @@ function Modal() {
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
-                      dispatch(toogleState());
+                      // dispatch(toogleState());
                     }}
                   >
                     Save Changes
