@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import logo from "./assets/logo.jpg";
-import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
+import { BsBookmarkStarFill, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
+  const count = useSelector((state) => state.cart.count);
+    const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
+
 
   const isAdmin = true;
   return (
@@ -58,6 +61,24 @@ function Navbar() {
         )}
       </div>
       <div className="space-x-4 text-gray-200 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
+        {bookmarkcount > 0 && (
+          <div className="text-white bg-black w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
+            {bookmarkcount}
+          </div>
+        )}
+        </div>
+        <Link to="/bookmark">
+          <BsBookmarkStarFill />
+        </Link>
+        {count > 0 && (
+          <div className="text-white bg-red-600 w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
+            {count}
+          </div>
+        )}
+        <Link to="/cart">
+          <BsCart2 />
+        </Link>
+        <div onClick={() => setToggle(!toggle)} class="dropdown flex relative">
         <BsCart2 />
         <div class="dropdown flex relative">
           <BsPersonCircle />
