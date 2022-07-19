@@ -9,6 +9,7 @@ import StarRating from "./starRating";
 import { useDispatch } from "react-redux";
 import { toogleState } from "../../redux/slices/ProductReducer";
 import Modal from "./Modal";
+import { decrement, increment } from "../../redux/slices/cartReducer";
 const ProductCard = () => {
   const dispatch = useDispatch();
   const [cartAdded, setCartAdded] = React.useState(false);
@@ -73,13 +74,19 @@ const ProductCard = () => {
           <div className="w-full mt-3 items-center flex -space-x-4 justify-evenly text-2xl">
             <BsFillArrowLeftCircleFill
               onClick={() => {
-                count > 0 && setCount(count - 1);
+                if (count > 0) {
+                  setCount(count - 1);
+                  dispatch(decrement());
+                } else {
+                  setCartAdded(false);
+                }
               }}
             />
             {count}
             <BsFillArrowRightCircleFill
               onClick={() => {
                 setCount(count + 1);
+                dispatch(increment());
               }}
             />
           </div>
