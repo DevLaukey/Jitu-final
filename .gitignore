@@ -1150,3 +1150,5 @@ server/authMicroservice/node_modules/jw-paginate/README.md
 server/authMicroservice/node_modules/jw-paginate/tsconfig.json
 server/authMicroservice/node_modules/jw-paginate/lib/jw-paginate.d.ts
 server/authMicroservice/node_modules/jw-paginate/lib/jw-paginate.js
+server/authMicroservice/node_modules/.package-lock.json
+server/authMicroservice/.env
