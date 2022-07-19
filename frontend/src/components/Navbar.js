@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import logo from "./assets/logo.jpg";
-import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
+import { BsBookmarkStarFill, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Cart from "./products/Cart";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
   const count = useSelector((state) => state.cart.count);
+    const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
+
   const isAdmin = true;
   return (
     <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
@@ -47,6 +49,14 @@ function Navbar() {
         )}
       </div>
       <div className="space-x-4 text-gray-200 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
+        {bookmarkcount > 0 && (
+          <div className="text-white bg-black w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
+            {bookmarkcount}
+          </div>
+        )}
+        <Link to="/bookmark">
+          <BsBookmarkStarFill />
+        </Link>
         {count > 0 && (
           <div className="text-white bg-red-600 w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
             {count}

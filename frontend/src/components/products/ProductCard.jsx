@@ -6,16 +6,18 @@ import {
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
 import StarRating from "./starRating";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toogleState } from "../../redux/slices/ProductReducer";
 import Modal from "./Modal";
-import { decrement, increment } from "../../redux/slices/cartReducer";
+import { decrement, increment, addBookmark, removeBookmark } from "../../redux/slices/cartReducer";
 import CurrencyFormat from "react-currency-format";
 
 const ProductCard = () => {
   const dispatch = useDispatch();
   const [cartAdded, setCartAdded] = React.useState(false);
   const [count, setCount] = React.useState(0);
+  const [bookmark, setBookmark] = React.useState(false);
+  const bookmarkCount = React.useState(useSelector((state) => state.cart.bookmarkCount));
   const addToCart = () => {
     setCartAdded(true);
   };
@@ -34,8 +36,24 @@ const ProductCard = () => {
               onClick={() => dispatch(toogleState())}
             />
           </span>
-          <span className="bg-blue-400 text-white p-1.5 rounded-md hover:bg-blue-600">
-            <FiHeart />
+          <span
+            className={
+              bookmark
+                ? `bg-indigo-900 text-white p-1.5 rounded-md hover:bg-blue-600`
+                : `bg-blue-400 text-white p-1.5 rounded-md hover:bg-blue-600`
+            }
+          >
+            <FiHeart
+              className="hover:cursor-pointer"
+              onClick={() => {
+                setBookmark(!bookmark);
+                if (bookmark == true) {
+                  dispatch(removeBookmark());
+                } else {
+                  dispatch(addBookmark());
+                }
+              }}
+            />
           </span>
         </div>
         <div className="w-full mt-[-20px] z-30">

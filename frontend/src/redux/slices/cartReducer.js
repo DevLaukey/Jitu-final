@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     count: 0,
     cartAdded: false,
+    bookmarkCount: 0,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -16,9 +17,15 @@ const cartSlice = createSlice({
     decrement: (state) => {
       state.count--;
     },
+    addBookmark: (state) => {
+      state.bookmarkCount++;
+    },
+    removeBookmark: (state) => {
+      state.bookmarkCount--;
+    }
   },
 });
 
-export const { addToCart, increment, decrement} = cartSlice.actions;
+export const { addToCart, increment, decrement, addBookmark, removeBookmark} = cartSlice.actions;
 
 export default cartSlice.reducer;

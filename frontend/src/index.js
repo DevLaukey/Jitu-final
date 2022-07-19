@@ -18,6 +18,7 @@ import AddCategory from "./components/admin/AddCategory";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cart from "./components/products/Cart";
+import Bookmark from "./components/products/Bookmark";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -33,6 +34,7 @@ root.render(
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/add-category" element={<AddCategory />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/bookmark" element={<Bookmark />} />
       </Routes>
       <Footer />
     </Router>
