@@ -2,19 +2,31 @@ import React, { useState } from "react";
 import logo from "./assets/logo.jpg";
 import { BsBookmarkStarFill, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Cart from "./products/Cart";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
   const count = useSelector((state) => state.cart.count);
     const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
+
 
   const isAdmin = true;
   return (
     <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
       <div className="text-center ">
         <Link to="/">
-          <img className="aspect-square w-14" src={logo} alt="" />
+          <div className="flex items-center flex-shrink-0 text-white mr-6">
+            <svg
+              className="fill-current h-8 w-8 mr-2"
+              width="54"
+              height="54"
+              viewBox="0 0 54 54"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+            </svg>
+            <span className="font-semibold text-xl tracking-tight">
+              Tangerine Furniture
+            </span>
+          </div>{" "}
         </Link>
       </div>
       <div className="flex items-center justify-center">
@@ -54,6 +66,7 @@ function Navbar() {
             {bookmarkcount}
           </div>
         )}
+        </div>
         <Link to="/bookmark">
           <BsBookmarkStarFill />
         </Link>
@@ -66,11 +79,14 @@ function Navbar() {
           <BsCart2 />
         </Link>
         <div onClick={() => setToggle(!toggle)} class="dropdown flex relative">
+        <BsCart2 />
+        <div class="dropdown flex relative">
           <BsPersonCircle />
           <svg
             class="fill-current h-4 w-4 focus:block"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
+            onClick={() => setToggle(!toggle)}
           >
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
           </svg>

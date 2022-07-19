@@ -17,8 +17,19 @@ import AddProduct from "./components/admin/AddProduct";
 import AddCategory from "./components/admin/AddCategory";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+<<<<<<< HEAD
 import Cart from "./components/products/Cart";
 import Bookmark from "./components/products/Bookmark";
+=======
+
+import DashBoard from "./components/admin/Main";
+import Customers from "./components/admin/Customers";
+import AddCustomer from "./components/admin/AddCustomer";
+import Products from "./components/admin/Products";
+import Orders from "./components/admin/Order";
+import Messages from "./components/admin/Messages";
+import Settings from "./components/admin/Settings";
+>>>>>>> main
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -28,13 +39,24 @@ root.render(
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<DashBoard />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/customers/add-user" element={<AddCustomer />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/add-category" element={<AddCategory />} />
+<<<<<<< HEAD
         <Route path="/cart" element={<Cart />} />
         <Route path="/bookmark" element={<Bookmark />} />
+=======
+>>>>>>> main
       </Routes>
       <Footer />
     </Router>
