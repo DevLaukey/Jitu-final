@@ -16,12 +16,7 @@ import SignUp from "./components/logins/SignUp";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-<<<<<<< HEAD
 
-=======
-import Cart from "./components/products/Cart";
-import Bookmark from "./components/products/Bookmark";
->>>>>>> c1e96aecb0106a266b3efdf285dfd3ef9d2e7cc5
 
 import DashBoard from "./components/admin/Main";
 import Customers from "./components/admin/Customers";
@@ -30,10 +25,9 @@ import Products from "./components/admin/Products";
 import Orders from "./components/admin/Order";
 import Messages from "./components/admin/Messages";
 import Settings from "./components/admin/Settings";
-<<<<<<< HEAD
+import Cart from "./components/products/Cart";
+import Bookmark from "./components/products/Bookmark";
 
-=======
->>>>>>> c1e96aecb0106a266b3efdf285dfd3ef9d2e7cc5
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -54,16 +48,10 @@ root.render(
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-<<<<<<< HEAD
       
         <Route path="/cart" element={<Cart />} />
         <Route path="/bookmark" element={<Bookmark />} />
 
-=======
-        
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/bookmark" element={<Bookmark />} />
->>>>>>> c1e96aecb0106a266b3efdf285dfd3ef9d2e7cc5
       </Routes>
       <Footer />
     </Router>
