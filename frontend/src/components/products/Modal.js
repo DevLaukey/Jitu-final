@@ -4,7 +4,6 @@ import { toogleState } from "../../redux/slices/ProductReducer";
 
 function Modal() {
   const showModal = useSelector((state) => state.modal);
-  console.log(showModal);
   const dispatch = useDispatch();
 
   return (

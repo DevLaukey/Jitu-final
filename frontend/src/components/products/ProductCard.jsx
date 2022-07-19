@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { toogleState } from "../../redux/slices/ProductReducer";
 import Modal from "./Modal";
 import { decrement, increment } from "../../redux/slices/cartReducer";
+import CurrencyFormat from "react-currency-format";
+
 const ProductCard = () => {
   const dispatch = useDispatch();
   const [cartAdded, setCartAdded] = React.useState(false);
@@ -20,6 +22,7 @@ const ProductCard = () => {
   const addOrder = () => {
     addToCart();
   };
+  const price = 3900;
   return (
     <>
       <Modal />
@@ -63,11 +66,25 @@ const ProductCard = () => {
         </div>
         <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full mt-3">
           <span className="flex items-center self-start gap-x-2">
-            <p className="text-2xl font-semibold">$37.00</p>
+            <p className="text-xl font-semibold">
+              <CurrencyFormat
+                value={price}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"Ksh"}
+              />
+            </p>
             <p className="bg-zinc-200 px-1.5 rounded-sm  text-zinc-600">-25%</p>
           </span>
           <span>
-            <p className="line-through text-zinc-400 p-1.5 self-start">$52.5</p>
+            <p className="line-through text-zinc-400 p-1.5 self-start">
+              <CurrencyFormat
+                value={price + Math.floor(Math.random() * 100)}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"Ksh"}
+              />
+            </p>
           </span>
         </div>
         {cartAdded ? (
