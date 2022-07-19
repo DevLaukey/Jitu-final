@@ -3,28 +3,13 @@ const { exec } = require("../helpers/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// ToDO
+// Send email to user after login
+// reset password
+
 module.exports = {
-	getusers: async (req, res) => {
-		try {
-			const users = await exec("all_users");
-			return res.status(201).json({
-				status: 201,
-				success: true,
-				message: `all users retrieved`,
-				total_users: users.recordset.length,
-			});
-		} catch (error) {
-			console.log(error.message);
-			return res.status(500).json({
-				status: 500,
-				success: false,
-				message: error.message,
-			});
-		}
-	},
 	signup: async (req, res) => {
 		const { fullName, email, telephone, password } = req.body;
-
 		try {
 			const userExists = await exec("verify_exists", {
 				email,
@@ -46,7 +31,6 @@ module.exports = {
 				telephone,
 				password: hashPass,
 			});
-
 			const token = jwt.sign({ email }, process.env.JWTKEY, {
 				expiresIn: "1h",
 			});
@@ -150,6 +134,53 @@ module.exports = {
 				status: 500,
 				success: false,
 				message: error.message,
+			});
+		}
+	},
+	userStatus: async (req, res) => {
+		const { email } = req.body;
+		try {
+			const users = await exec("user_status", { email });
+			return res.status(201).json({
+				status: 201,
+				success: true,
+				message: `user status`,
+				data: users.recordset,
+			});
+		} catch (error) {
+			console.log(error.message);
+			return res.status(500).json({
+				status: 500,
+				success: false,
+				message: error.message,
+			});
+		}
+	},
+	getusers: async (req, res) => {
+		try {
+			const page = req.query.page || 1;
+			const size = req.query.size || 10;
+			const search = req.query.search || "";
+			const orderBy = req.query.orderBy || "fullName";
+			const orderDir = req.query.orderDir || "DESC";
+
+			const result = await exec("customer_pagination", { page, size, search, orderBy, orderDir });
+			const count = result.recordsets[1][0];
+
+			return res.status(201).json({
+				status: 201,
+				success: true,
+				size: size,
+				records: result.recordsets[0],
+				filtered: count.Filtered,
+				total: count.Total,
+			});
+		} catch (error) {
+			console.log(error.message);
+			return res.status(500).json({
+				status: 500,
+				success: false,
+				message: error,
 			});
 		}
 	},

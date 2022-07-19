@@ -1143,3 +1143,10 @@ server/node_modules/vary/index.js
 server/node_modules/vary/LICENSE
 server/node_modules/vary/package.json
 server/node_modules/vary/README.md
+server/authMicroservice/node_modules/.package-lock.json
+server/authMicroservice/node_modules/jw-paginate/LICENSE
+server/authMicroservice/node_modules/jw-paginate/package.json
+server/authMicroservice/node_modules/jw-paginate/README.md
+server/authMicroservice/node_modules/jw-paginate/tsconfig.json
+server/authMicroservice/node_modules/jw-paginate/lib/jw-paginate.d.ts
+server/authMicroservice/node_modules/jw-paginate/lib/jw-paginate.js
