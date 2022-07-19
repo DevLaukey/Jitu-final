@@ -18,6 +18,8 @@ server/node_modules/simple-update-notifier/node_modules/.bin/semver.cmd
 server/node_modules/simple-update-notifier/node_modules/.bin/semver.ps1
 .history
 .gitignore
+node_modules
+.env
 server/authMicroservice/node_modules/.bin/is-docker.cmd
 server/authMicroservice/node_modules/.bin/is-docker.ps1
 server/authMicroservice/node_modules/.bin/mime.cmd
