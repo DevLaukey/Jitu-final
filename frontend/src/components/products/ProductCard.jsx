@@ -7,7 +7,6 @@ import {
 } from "react-icons/bs";
 import StarRating from "./starRating";
 import { useDispatch, useSelector } from "react-redux";
-import { toogleState } from "../../redux/slices/ProductReducer";
 import Modal from "./Modal";
 import { decrement, increment, addBookmark, removeBookmark } from "../../redux/slices/cartReducer";
 import CurrencyFormat from "react-currency-format";
@@ -34,7 +33,7 @@ const ProductCard = () => {
           <span className="bg-blue-400 text-white p-1.5 rounded-md hover:bg-blue-600">
             <FiEye
               className="hover:cursor-pointer"
-              onClick={() => dispatch(toogleState())}
+              // onClick={() => dispatch(toogleState())}
             />
           </span>
           <span
