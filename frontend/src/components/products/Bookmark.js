@@ -11,8 +11,10 @@ function Bookmark() {
         <div class="flex w-full justify-between border-b pb-8">
           <h1 class="font-semibold text-2xl">Things to buy</h1>
           <h2 class="font-semibold text-2xl">{bookmarkcount} Items</h2>
-              </div>
-              <BookMarkItems />
+        </div>
+        <BookMarkItems />
+        <BookMarkItems />
+        <BookMarkItems />
       </div>
     </div>
   );
