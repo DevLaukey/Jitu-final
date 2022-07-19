@@ -1,23 +1,23 @@
 
-GET http://localhost:3000/users
+GET http://localhost:3016/users?page=1&size=3&orderBy=fullName&orderDir=DESC&search=pa
 
 ###
-POST http://localhost:3000/signup
+POST http://localhost:3016/signup
 Content-Type: application/json
 
 {
-    "fullName": "Victor Mburu Mwaura",
-    "email": "bensonkimathi@gmail.com",
-    "telephone": "07898989898",
+    "fullName": "Yahoo User",
+    "email": "localhostuser@yahoo.com",
+    "telephone": "0786547898",
     "password": "123456"
 }
 
 ####
-POST  http://localhost:3000/login
+POST  http://localhost:3016/signin
 Content-Type: application/json
 
 {
-    "email": "bensonkimathi@gmail.com",
+    "email": "localhostuser@yahoo.com",
     "password": "123456"
 }
 
@@ -29,7 +29,7 @@ POST http://localhost:3005/add-category
 Content-Type: application/json
 
 {
-     "categoryName":"Chairs and Sofas"
+     "categoryName":"Wall units"
 }
 
 ###
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
     "categoryId":1,
-     "categoryName":"Chairs and Recliners"
+     "categoryName":"Seaters"
 }
 
 ###
@@ -54,4 +54,15 @@ Content-Type: application/json
     "price":"35500",
     "description":"This is your ideal resting compaion. An all time chair to suit you.",
     "categoryId": 1
+}
+
+###
+GET http://localhost:5016/orders
+
+###
+POST http://localhost:5016/add-order
+Content-Type: application/json
+
+{
+    ""
 }
