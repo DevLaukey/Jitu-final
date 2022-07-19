@@ -13,14 +13,11 @@ import { Provider } from "react-redux";
 import Login from "./components/logins/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./components/logins/SignUp";
-import AddProduct from "./components/admin/AddProduct";
-import AddCategory from "./components/admin/AddCategory";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-<<<<<<< HEAD
 import Cart from "./components/products/Cart";
 import Bookmark from "./components/products/Bookmark";
-=======
 
 import DashBoard from "./components/admin/Main";
 import Customers from "./components/admin/Customers";
@@ -29,7 +26,6 @@ import Products from "./components/admin/Products";
 import Orders from "./components/admin/Order";
 import Messages from "./components/admin/Messages";
 import Settings from "./components/admin/Settings";
->>>>>>> main
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -50,13 +46,9 @@ root.render(
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/add-category" element={<AddCategory />} />
-<<<<<<< HEAD
+        
         <Route path="/cart" element={<Cart />} />
         <Route path="/bookmark" element={<Bookmark />} />
-=======
->>>>>>> main
       </Routes>
       <Footer />
     </Router>

@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import logo from "./assets/logo.jpg";
-import { BsBookmarkStarFill, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
+import {
+  BsBookmarkStarFill,
+  BsCart2,
+  BsPersonCircle,
+  BsSearch,
+} from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
-  const count = useSelector((state) => state.cart.count);
-    const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
-
+  const count = 3;
+  const bookmarkcount = 4;
 
   const isAdmin = true;
   return (
-    <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
+    <header className="text-white flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
       <div className="text-center ">
         <Link to="/">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -66,20 +70,19 @@ function Navbar() {
             {bookmarkcount}
           </div>
         )}
+      </div>
+      <Link to="/bookmark">
+        <BsBookmarkStarFill />
+      </Link>
+      {count > 0 && (
+        <div className="text-white bg-red-600 w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
+          {count}
         </div>
-        <Link to="/bookmark">
-          <BsBookmarkStarFill />
-        </Link>
-        {count > 0 && (
-          <div className="text-white bg-red-600 w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
-            {count}
-          </div>
-        )}
-        <Link to="/cart">
-          <BsCart2 />
-        </Link>
-        <div onClick={() => setToggle(!toggle)} class="dropdown flex relative">
+      )}
+      <Link to="/cart">
         <BsCart2 />
+      </Link>
+      <div onClick={() => setToggle(!toggle)} class="dropdown flex relative">
         <div class="dropdown flex relative">
           <BsPersonCircle />
           <svg
