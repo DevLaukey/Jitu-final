@@ -18,7 +18,6 @@ import AddCategory from "./components/admin/AddCategory";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import Cart from "./components/products/Cart";
 import DashBoard from "./components/admin/Main";
 import Customers from "./components/admin/Customers";
 import AddCustomer from "./components/admin/AddCustomer";
