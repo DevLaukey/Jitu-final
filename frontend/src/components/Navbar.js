@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import logo from "./assets/logo.jpg";
 import { BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Cart from "./products/Cart";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
-  const count = useSelector((state) => state.cart.count);
+
   const isAdmin = true;
   return (
     <header className="flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
@@ -60,20 +58,14 @@ function Navbar() {
         )}
       </div>
       <div className="space-x-4 text-gray-200 flex  px-3 py-2.5  text-center whitespace-nowrap rounded">
-        {count > 0 && (
-          <div className="text-white bg-red-600 w-3 h-auto justify-content relative -top-3 left-10 text-xs rounded-lg">
-            {count}
-          </div>
-        )}
-        <Link to="/cart">
-          <BsCart2 />
-        </Link>
-        <div onClick={() => setToggle(!toggle)} class="dropdown flex relative">
+        <BsCart2 />
+        <div class="dropdown flex relative">
           <BsPersonCircle />
           <svg
             class="fill-current h-4 w-4 focus:block"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
+            onClick={() => setToggle(!toggle)}
           >
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
           </svg>

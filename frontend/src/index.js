@@ -17,6 +17,7 @@ import AddProduct from "./components/admin/AddProduct";
 import AddCategory from "./components/admin/AddCategory";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 import Cart from "./components/products/Cart";
 import DashBoard from "./components/admin/Main";
 import Customers from "./components/admin/Customers";
@@ -47,7 +48,6 @@ root.render(
         <Route path="/signup" element={<SignUp />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/add-category" element={<AddCategory />} />
-        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </Router>
