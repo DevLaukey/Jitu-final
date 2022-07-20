@@ -22,6 +22,7 @@ const AddCustomer = () => {
       telephone: inputs.telephone,
       password: inputs.password,
     });
+
     try {
       await axios.post(`${baseURL}/signup`, datainputs, {
         headers: { "Content-Type": "application/json" },

@@ -208,3 +208,42 @@ BEGIN
         (@orderid,@productid,@unitprice,@quantity)
 END
 GO
+
+
+-- Pagination/Search/Filter 
+CREATE   PROCEDURE [dbo].[customer_pagination]
+	@page			INT,
+	@size			INT,
+	@search			NVARCHAR(100) = '%',
+	@orderBy		VARCHAR(MAX) = 'fullName',
+	@orderDir		VARCHAR(MAX) = 'DESC'
+AS
+BEGIN
+	DECLARE @condition	VARCHAR(MAX);
+	DECLARE @skip		INT;
+
+	SET @skip	= (@size * @page) - @size;
+	-- SET @search = @search;
+
+
+    set @search=  LOWER(@search)
+
+		-- SET @condition = 
+		-- 		LOWER([fullName])	LIKE ''%'' + ' + @search + ' + ''%'' OR
+		-- 			LOWER([email])		LIKE ''%'' + ' + @search + ' + ''%''
+		-- ;
+        -- set @condition= LOWER( '%'+@search+'%')  
+
+    SELECT	* 
+    FROM [dbo].[Users] 
+    WHERE LOWER(fullName) LIKE '%'+@search+'%' 
+    OR (email) LIKE  '%'+@search+'%' 
+    ORDER BY fullName  ASC 
+    OFFSET	 @skip  ROWS FETCH NEXT @size ROWS ONLY		
+    
+    SELECT 	
+    	(SELECT COUNT(*) FROM [dbo].[Users] WHERE LOWER(fullName) LIKE '%'+ @search +'%' OR lower(email) LIKE '%'+ @search +'%') AS [Filtered],
+    	(SELECT COUNT(*) FROM [dbo].[Users]) AS [Total] 
+	
+END
+GO
