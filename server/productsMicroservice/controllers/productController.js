@@ -9,7 +9,7 @@ module.exports = {
 							status: 201,
 							success: true,
 							message: "Success",
-							total_products: result.recordset.length,
+							products: result.recordset,
 					  })
 					: res.status(404).json({
 							status: 405,

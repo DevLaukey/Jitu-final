@@ -5,19 +5,17 @@ import Sidebar from "./components/admin/Sidebar";
 import ProductGrid from "./components/products/productGrid";
 
 function App({ isAdmin }) {
-  return (
-  !isAdmin ? (
-    <>
-      <ToastContainer />
-      <div className="flex ">
-        <Sidebar />
-        <Outlet />
-      </div>
-    </>
-  ) : (
-    <ProductGrid />
-    )
-  )
+	return !isAdmin ? (
+		<>
+			<ToastContainer />
+			<div className="flex ">
+				<Sidebar />
+				<Outlet />
+			</div>
+		</>
+	) : (
+		<ProductGrid />
+	);
 }
 
 export default App;
