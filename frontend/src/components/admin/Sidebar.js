@@ -47,7 +47,7 @@ const Sidebar = () => {
 
           <li className="relative">
             <Link
-              to="/customers"
+              to="/admin/customers"
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 transition duration-300 ease-in-out"
               href="/"
               data-mdb-ripple="true"
@@ -59,7 +59,7 @@ const Sidebar = () => {
           </li>
           <li className="relative">
             <Link
-              to="/products"
+              to="/admin/products"
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 transition duration-300 ease-in-out"
               href="/"
               data-mdb-ripple="true"
@@ -71,7 +71,7 @@ const Sidebar = () => {
           </li>
           <li className="relative">
             <Link
-              to="/orders"
+              to="/admin/orders"
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 transition duration-300 ease-in-out"
               href="/"
               data-mdb-ripple="true"
@@ -85,7 +85,7 @@ const Sidebar = () => {
           <hr className="my-2" />
           <li className="relative">
             <Link
-              to="/settings"
+              to="/admin/settings"
               className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 transition duration-300 ease-in-out"
               href="/"
               data-mdb-ripple="true"
