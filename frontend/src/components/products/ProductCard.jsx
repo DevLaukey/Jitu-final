@@ -5,10 +5,14 @@ import {
   BsFillFilePlusFill,
   BsFillFileMinusFill,
 } from "react-icons/bs";
-import StarRating from "./starRating";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
-import { decrement, increment, addBookmark, removeBookmark } from "../../redux/slices/cartReducer";
+import {
+  decrement,
+  increment,
+  addBookmark,
+  removeBookmark,
+} from "../../redux/slices/cartReducer";
 import CurrencyFormat from "react-currency-format";
 
 const ProductCard = () => {
@@ -18,13 +22,22 @@ const ProductCard = () => {
   const [bookmark, setBookmark] = React.useState(false);
   const bookmarkCount = 10;
   // React.useState(useSelector((state) => state.cart.bookmarkCount));
-  const addToCart = () => {
-    setCartAdded(true);
-  };
-  const addOrder = () => {
-    addToCart();
-  };
+
   const price = 3900;
+  const removeItems = () => {
+    if (count > 1) {
+      setCount(count - 1);
+      dispatch(decrement());
+    } else {
+      setCartAdded(false);
+    }
+  };
+  const addItems = () => {
+          setCartAdded(true);
+
+    setCount(count + 1);
+    dispatch(increment());
+  };
   return (
     <>
       <Modal />
@@ -33,7 +46,7 @@ const ProductCard = () => {
           <span className="bg-blue-400 text-white p-1.5 rounded-md hover:bg-blue-600">
             <FiEye
               className="hover:cursor-pointer"
-            // onClick={() => dispatch(toogleState())}
+              // onClick={() => dispatch(toogleState())}
             />
           </span>
           <span
@@ -68,7 +81,6 @@ const ProductCard = () => {
             brown and black rolling chair
           </p>
           <p className="text-sm text-amber-600 mt-1">In stock</p>
-
         </div>
 
         <div>
@@ -105,28 +117,20 @@ const ProductCard = () => {
         </div>
         {cartAdded ? (
           <div className="w-full mt-3 items-center flex justify-between bg-blue-600 text-white rounded-md font-light py-0.5 px-3 text-2xl">
-            <BsFillFileMinusFill className="cursor-pointer hover:scale-x-150"
-              onClick={() => {
-                if (count > 0) {
-                  setCount(count - 1);
-                  dispatch(decrement());
-                } else {
-                  setCartAdded(false);
-                }
-              }}
+            <BsFillFileMinusFill
+              className="cursor-pointer hover:scale-x-150"
+              onClick={removeItems}
             />
-            {count + 1}
-            <BsFillFilePlusFill className="cursor-pointer hover:scale-x-150"
-              onClick={() => {
-                setCount(count + 1);
-                dispatch(increment());
-              }}
+            {count}
+            <BsFillFilePlusFill
+              className="cursor-pointer hover:scale-x-150"
+              onClick={addItems}
             />
           </div>
         ) : (
           <button
             type="submit"
-            onClick={addOrder}
+            onClick={addItems}
             className="bg-blue-600 text-white capitalize w-full flex items-center justify-center gap-x-2 p-2 my-2 rounded-md hover:bg-blue-800 "
           >
             <span>
@@ -140,4 +144,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard
+export default ProductCard;
