@@ -27,6 +27,7 @@ import Settings from "./components/admin/Settings";
 import Cart from "./components/products/Cart";
 import Bookmark from "./components/products/Bookmark";
 import Error from "./components/Error";
+
 import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
 import ProductGrid from "./components/products/productGrid";
 
