@@ -46,6 +46,6 @@ CREATE TABLE Order_Product
     OrderId INT NOT NULL FOREIGN KEY REFERENCES Orders(OrderId),
     ProductId INT NOT NULL FOREIGN KEY REFERENCES Products(productID),
     UnitPrice DECIMAL(12, 2) NOT NULL,
-    Quantity INT NOT NULL,
+    Quantity INT NOT NULL DEFAULT 1,
 )
 GO
