@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { BsHeart, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ProductGrid from "./products/productGrid";
 function Navbar() {
 	const [toggle, setToggle] = useState(false);
 	const count = 13;
 	const bookmarkcount = 4;
 
-	const isAdmin = true;
+  const isAdmin = true;
 	return (
 		<header className="text-white flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
 			<div className="text-center ">

@@ -28,31 +28,37 @@ import Cart from "./components/products/Cart";
 import Bookmark from "./components/products/Bookmark";
 import Error from "./components/Error";
 
+import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
+import ProductGrid from "./components/products/productGrid";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-	<Provider store={store}>
-		<Router>
-			<Navbar />
+  <Provider store={store}>
+    <Router>
+      <Navbar />
 
-			<Routes>
-				<Route path="/" element={<App />}>
-					<Route index element={<DashBoard />} />
-					<Route path="/customers" element={<Customers />} />
-					<Route path="/customers/add-user" element={<AddCustomer />} />
-					<Route path="/products" element={<Products />} />
-					<Route path="/orders" element={<Orders />} />
-					<Route path="/messages" element={<Messages />} />
-					<Route path="/settings" element={<Settings />} />
-				</Route>
-				<Route path="/login" element={<Login />} />
-				<Route path="/signup" element={<SignUp />} />
+      <Routes>
+        <Route path="/" element={<ProtectedRoutes />}>
+          <Route path="/" element={<App isAdmin={true} />}>
+            <Route path="/" element={<DashBoard />} />
+            <Route path="admin/customers" element={<Customers />} />
+            <Route path="admin/customers/add-user" element={<AddCustomer />} />
+            <Route path="admin/products" element={<Products />} />
+            <Route path="admin/orders" element={<Orders />} />
+            <Route path="admin/messages" element={<Messages />} />
+            <Route path="admin/settings" element={<Settings />} />
+          </Route>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/bookmark" element={<Bookmark />} />
+        </Route>
 
-				<Route path="/cart" element={<Cart />} />
-				<Route path="/bookmark" element={<Bookmark />} />
-				<Route path="*" element={<Error />} />
-			</Routes>
-			<Footer />
-		</Router>
-	</Provider>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
+        <Route path="*" element={<Error />} />
+      </Routes>
+      <Footer />
+    </Router>
+  </Provider>
 );
