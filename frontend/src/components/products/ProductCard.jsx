@@ -21,7 +21,9 @@ const ProductCard = () => {
   const [cartAdded, setCartAdded] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const [bookmark, setBookmark] = React.useState(false);
+
   const [products, setProducts] = React.useState([]);
+  const [inStock, setInStock] = React.useState(false)
 
   const bookmarkCount = 10;
   // React.useState(useSelector((state) => state.cart.bookmarkCount));
@@ -52,8 +54,6 @@ const ProductCard = () => {
       setProducts(response.data.products)
       // total = response.data.filtered;
       // rows = response.data.records.length;
-      // setProducts(response);
-      console.log(products)
     });
   }, []);
 
@@ -97,11 +97,15 @@ const ProductCard = () => {
                 className="w-max h-[180px] rounded"
               />
             </div>
-            <div className="flex justify-between flex-wrap">
+            <div className="justify-between  flex-wrap">
               <p className="text-zinc-900 mt-1.5 font-semibold capitalize">
                 {product.productName}
               </p>
-              <p className="text-sm text-amber-600 mt-1">In stock</p>
+              {product.inStock ? (
+                <p className="text-sm text-green-600 mt-1">
+                  In Stock
+                </p>) : (<p className="text-sm text-red-600 mt-1">Out of stock</p>)}
+
             </div>
 
             <div>
