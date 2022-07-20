@@ -6,12 +6,12 @@ import ProductGrid from "./components/products/productGrid";
 function App() {
   return (
     <>
-      {/* <ToastContainer />
+      <ToastContainer />
       <div className="flex ">
         <Sidebar />
         <Outlet />
-      </div> */}
-      <ProductGrid/>
+      </div>
+      {/* <ProductGrid/> */}
     </>
   );
 }

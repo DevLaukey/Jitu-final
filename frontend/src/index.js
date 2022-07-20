@@ -27,6 +27,7 @@ import Messages from "./components/admin/Messages";
 import Settings from "./components/admin/Settings";
 import Cart from "./components/products/Cart";
 import Bookmark from "./components/products/Bookmark";
+import Error from "./components/Error";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -48,10 +49,10 @@ root.render(
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-      
+
         <Route path="/cart" element={<Cart />} />
         <Route path="/bookmark" element={<Bookmark />} />
-
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </Router>
