@@ -4,16 +4,16 @@ import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./components/admin/Sidebar";
 import ProductGrid from "./components/products/productGrid";
 function App() {
-  return (
-    <>
-      <ToastContainer />
+	return (
+		<>
+			{/* <ToastContainer />
       <div className="flex ">
         <Sidebar />
         <Outlet />
-      </div>
-      {/* <ProductGrid/> */}
-    </>
-  );
+      </div> */}
+			<ProductGrid />
+		</>
+	);
 }
 
 export default App;

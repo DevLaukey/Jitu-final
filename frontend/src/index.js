@@ -17,7 +17,6 @@ import SignUp from "./components/logins/SignUp";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-
 import DashBoard from "./components/admin/Main";
 import Customers from "./components/admin/Customers";
 import AddCustomer from "./components/admin/AddCustomer";
@@ -29,32 +28,31 @@ import Cart from "./components/products/Cart";
 import Bookmark from "./components/products/Bookmark";
 import Error from "./components/Error";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <Provider store={store}>
-    <Router>
-      <Navbar />
+	<Provider store={store}>
+		<Router>
+			<Navbar />
 
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<DashBoard />} />
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/customers/add-user" element={<AddCustomer />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/settings" element={<Settings />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+			<Routes>
+				<Route path="/" element={<App />}>
+					<Route index element={<DashBoard />} />
+					<Route path="/customers" element={<Customers />} />
+					<Route path="/customers/add-user" element={<AddCustomer />} />
+					<Route path="/products" element={<Products />} />
+					<Route path="/orders" element={<Orders />} />
+					<Route path="/messages" element={<Messages />} />
+					<Route path="/settings" element={<Settings />} />
+				</Route>
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<SignUp />} />
 
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/bookmark" element={<Bookmark />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Footer />
-    </Router>
-  </Provider>
+				<Route path="/cart" element={<Cart />} />
+				<Route path="/bookmark" element={<Bookmark />} />
+				<Route path="*" element={<Error />} />
+			</Routes>
+			<Footer />
+		</Router>
+	</Provider>
 );

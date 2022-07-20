@@ -2,8 +2,8 @@ import React from "react";
 import { FiEye, FiHeart } from "react-icons/fi";
 import {
   BsCartPlus,
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
+  BsFillFilePlusFill,
+  BsFillFileMinusFill,
 } from "react-icons/bs";
 import StarRating from "./starRating";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ const ProductCard = () => {
   const [count, setCount] = React.useState(0);
   const [bookmark, setBookmark] = React.useState(false);
   const bookmarkCount = 10;
-    // React.useState(useSelector((state) => state.cart.bookmarkCount));
+  // React.useState(useSelector((state) => state.cart.bookmarkCount));
   const addToCart = () => {
     setCartAdded(true);
   };
@@ -33,7 +33,7 @@ const ProductCard = () => {
           <span className="bg-blue-400 text-white p-1.5 rounded-md hover:bg-blue-600">
             <FiEye
               className="hover:cursor-pointer"
-              // onClick={() => dispatch(toogleState())}
+            // onClick={() => dispatch(toogleState())}
             />
           </span>
           <span
@@ -63,9 +63,14 @@ const ProductCard = () => {
             className="w-max h-[180px] rounded"
           />
         </div>
-        <p className="text-zinc-900 mt-1.5 font-semibold capitalize">
-          brown and black rolling chair
-        </p>
+        <div className="flex justify-between flex-wrap">
+          <p className="text-zinc-900 mt-1.5 font-semibold capitalize">
+            brown and black rolling chair
+          </p>
+          <p className="text-sm text-amber-600 mt-1">In stock</p>
+
+        </div>
+
         <div>
           <p className="text-zinc-500 text-sm my-0.5 line-clamp-2">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat
@@ -74,14 +79,7 @@ const ProductCard = () => {
             praesentium. Quisquam, non iste?
           </p>
         </div>
-        <div className="flex justify-between lg:flex-row lg:justify-between lg:items-center w-full mt-3">
-          <span>
-            <StarRating />
-          </span>
-          <span>
-            <p className="text-zinc-800 ">In stock</p>
-          </span>
-        </div>
+
         <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full mt-3">
           <span className="flex items-center self-start gap-x-2">
             <p className="text-xl font-semibold">
@@ -106,8 +104,8 @@ const ProductCard = () => {
           </span>
         </div>
         {cartAdded ? (
-          <div className="w-full mt-3 items-center flex -space-x-4 justify-evenly text-2xl">
-            <BsFillArrowLeftCircleFill
+          <div className="w-full mt-3 items-center flex justify-between bg-blue-600 text-white rounded-md font-light py-0.5 px-3 text-2xl">
+            <BsFillFileMinusFill className="cursor-pointer hover:scale-x-150"
               onClick={() => {
                 if (count > 0) {
                   setCount(count - 1);
@@ -117,8 +115,8 @@ const ProductCard = () => {
                 }
               }}
             />
-            {count}
-            <BsFillArrowRightCircleFill
+            {count + 1}
+            <BsFillFilePlusFill className="cursor-pointer hover:scale-x-150"
               onClick={() => {
                 setCount(count + 1);
                 dispatch(increment());
