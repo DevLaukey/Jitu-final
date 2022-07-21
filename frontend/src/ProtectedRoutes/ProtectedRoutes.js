@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Login from '../components/logins/Login'
 const useAuth = () => {
     const user = { loggedIn: useSelector((state) => state.user.loggedIn) }
-    console.log(useSelector((state )=> state.user.loggedIn));
+   
     return user && user.loggedIn
 }
 const ProtectedRoutes = () => {

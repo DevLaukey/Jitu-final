@@ -51,7 +51,6 @@ const ProductCard = ({ product }) => {
       dispatch(itemsCountRemove());
     }
   }, [cartAdded]);
-  console.log(bookmarkCount);
   return (
     <>
       <Modal />
