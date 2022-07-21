@@ -14,7 +14,6 @@ const ProductGrid = () => {
       setProducts(response.data.products);
       // total = response.data.filtered;
       // rows = response.data.records.length;
-      console.log(response.data.products);
     });
   }, []);
 

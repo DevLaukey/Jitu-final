@@ -5,24 +5,25 @@ import {
   BsFillFilePlusFill,
   BsFillFileMinusFill,
 } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
 import {
   decrement,
   increment,
   addBookmark,
   removeBookmark,
+  itemsCountAdd,
+  itemsCountRemove,
 } from "../../redux/slices/cartReducer";
 import CurrencyFormat from "react-currency-format";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const [cartAdded, setCartAdded] = React.useState(false);
-  const [count, setCount] = React.useState(1);
+  const [count, setCount] = React.useState(0);
   const [bookmark, setBookmark] = React.useState(false);
 
-  const bookmarkCount = 10;
-  // React.useState(useSelector((state) => state.cart.bookmarkCount));
+  const bookmarkCount = useSelector((state) => state.cart.bookmarkCount);
 
   const price = 3900;
   const removeItems = () => {
@@ -31,15 +32,26 @@ const ProductCard = ({ product }) => {
       dispatch(decrement());
     } else {
       setCartAdded(false);
+      setCount(count - 1);
+
+      dispatch(decrement());
     }
   };
   const addItems = () => {
     setCartAdded(true);
 
     setCount(count + 1);
-    dispatch(increment() +1);
+    dispatch(increment());
   };
 
+  useEffect(() => {
+    if (cartAdded == true) {
+      dispatch(itemsCountAdd());
+    } else {
+      dispatch(itemsCountRemove());
+    }
+  }, [cartAdded]);
+  console.log(bookmarkCount);
   return (
     <>
       <Modal />
