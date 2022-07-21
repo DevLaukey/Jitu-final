@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsHeart, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductGrid from "./products/productGrid";
+import { searchQuery } from "../redux/slices/productReducer";
 function Navbar() {
+  const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false);
   const count = useSelector((state) => state.cart.itemsCount);
   const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
+  const [searchInput, setSearchInput] = useState(false);
+
+  const search = () => {
+    dispatch(searchQuery(searchInput));
+  };
+  useEffect(() => {
+    search();
+  }, [searchInput]);
 
   const isAdmin = true;
   return (
@@ -36,13 +46,14 @@ function Navbar() {
           className="form-control  flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal rounded-lg transition ease-in-out m-0 bg-zinc-100 text-zinc-600 focus:outline-none"
           placeholder="Search"
           aria-label="Search"
+          onChange={(e) => setSearchInput(e.target.value)}
           aria-describedby="button-addon2"
         />
         <span
           className="input-group-text flex items-center px-2 py-1.5 text-base font-normal text-gray-200 text-center whitespace-nowrap rounded"
           id="basic-addon2"
         >
-          <BsSearch />
+          <BsSearch onClick={search}/>
         </span>
         {/* </div> */}
       </div>
