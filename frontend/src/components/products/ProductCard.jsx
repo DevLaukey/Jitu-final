@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
+import { Link } from 'react-router-dom'
 import { FiEye, FiHeart } from "react-icons/fi";
 import {
   BsCartPlus,
   BsFillFilePlusFill,
   BsFillFileMinusFill,
+  BsHeartFill,
+  BsCartFill,
 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
+import { IoIosCloseCircle } from 'react-icons/io'
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   decrement,
   increment,
@@ -17,13 +23,19 @@ import {
 } from "../../redux/slices/cartReducer";
 import CurrencyFormat from "react-currency-format";
 
+
 const ProductCard = ({ product }) => {
+
   const dispatch = useDispatch();
   const [cartAdded, setCartAdded] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const [bookmark, setBookmark] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   const bookmarkCount = useSelector((state) => state.cart.bookmarkCount);
+  const bookmarkCount = 10;
+//React.useState(useSelector((state) => state.cart.bookmarkCount));
+
 
   const price = 3900;
   const removeItems = () => {
@@ -51,15 +63,23 @@ const ProductCard = ({ product }) => {
       dispatch(itemsCountRemove());
     }
   }, [cartAdded]);
+    dispatch(increment() + 1);
+  };
+
+  function Modal() {
+
+   
+
   return (
     <>
-      <Modal />
+      {showModal ? (<Modal showModal={showModal} setShowModal={setShowModal} />) : null}
+
       <div className="bg-white rounded-md px-4 py-2.5 my-2 mx-1 md:m-3 shadow-md shadow-zinc-400 flex flex-col justify-center items-center hover:shadow hover:shadow-blue-500">
         <div className="flex items-center self-end gap-x-3 z-40 mr-4">
           <span className="bg-blue-400 text-white p-1.5 rounded-md hover:bg-blue-600">
             <FiEye
               className="hover:cursor-pointer"
-              // onClick={() => dispatch(toogleState())}
+              onClick={() => setShowModal(true)}
             />
           </span>
           <span

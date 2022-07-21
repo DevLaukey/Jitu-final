@@ -2,12 +2,12 @@ const sql = require("mssql");
 require("dotenv").config();
 
 const dbConfig = {
-	user:process.env.DB_USER || 'SA',
-	password:process.env.DB_PWD || "password "||"mburu.2924",
-	database:process.env.DB_NAME || "tangarine_furniture",
+	user: "SA",
+	password: "password",
+	database: "tangarine_furniture",
 	server: "localhost",
 	port: 1433,
-	pool: {	
+	pool: {
 		max: 10,
 		min: 0,
 		idleTimeoutMillis: 30000,
