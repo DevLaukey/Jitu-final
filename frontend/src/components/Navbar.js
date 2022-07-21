@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsHeart, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import ProductGrid from "./products/productGrid";
+import axios from "axios";
+
 function Navbar() {
 	const [toggle, setToggle] = useState(false);
+	const [categories, setCategories] = useState([]);
 	const count = 13;
 	const bookmarkcount = 4;
 
-  const isAdmin = true;
+	const isAdmin = true;
+
+	const baseURL = "http://localhost:3005";
+
+	useEffect(() => {
+		setCategories([]);
+		axios.get(`${baseURL}/categories`).then((response) => {
+			setCategories(response.data.categories);
+		});
+	}, []);
+
 	return (
-		<header className="text-white flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
+		<header className="text-white flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-600">
 			<div className="text-center ">
 				<Link to="/">
 					<div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -26,11 +38,10 @@ function Navbar() {
 					</div>{" "}
 				</Link>
 			</div>
-			{/* <div className="flex items-center justify-center"> */}
-			<div className="input-group flex items-items justify-center">
+			<div className="input-group flex items-items justify-center w-max">
 				<input
 					type="search"
-					className="form-control  flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal rounded-lg transition ease-in-out m-0 bg-zinc-100 text-zinc-600 focus:outline-none"
+					className="form-control grow flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal rounded-lg transition ease-in-out m-0 bg-zinc-100 text-zinc-600 focus:outline-none"
 					placeholder="Search"
 					aria-label="Search"
 					aria-describedby="button-addon2"
@@ -40,74 +51,80 @@ function Navbar() {
 					id="basic-addon2">
 					<BsSearch />
 				</span>
-				{/* </div> */}
 			</div>
-			<div>
-				{isAdmin ? (
-					<ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
-						<Link to="/add-product">Add Product</Link>
-						<Link to="/add-category">Add Category</Link>
-					</ul>
-				) : (
-					<ul className="hidden text-gray-200 py-1.5 md:flex space-x-3 text-center">
-						<li>csdc</li>
-						<li>csdc</li>
-						<li>csdc</li>
-					</ul>
-				)}
-			</div>
-			<div className="text-gray-200 flex text-center whitespace-nowrap rounded">
-				<Link to="/bookmark">
-					<BsHeart className="text-xl" />
-				</Link>
-				{bookmarkcount > 0 && (
-					<div className="text-white bg-orange-600 w-5 h-5 p-1 flex items-center justify-center relative -left-0.5 -top-3 text-xs rounded-full">
-						{bookmarkcount}
-					</div>
-				)}
-			</div>
-
-			<div className="text-gray-200 flex  text-center whitespace-nowrap rounded">
-				<Link to="/cart">
-					<BsCart2 className="text-2xl" />
-				</Link>
-				{count > 0 && (
-					<div className="text-white bg-rose-600 w-auto h-5 p-1 flex items-center justify-center relative -left-2 -top-3 text-xs rounded-full">
-						{count}
-					</div>
-				)}
-			</div>
-
-			<div onClick={() => setToggle(!toggle)} className="dropdown flex relative">
-				<div className="dropdown flex relative">
-					<BsPersonCircle className="text-xl" />
-					<svg
-						className="fill-current h-4 w-4 focus:block"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 20 20"
-						onClick={() => setToggle(!toggle)}>
-						<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
-					</svg>
+			<div className="flex justify-center">
+				<div className=" xl:w-96">
+					<select
+						aria-label="select categories"
+						className="form-select appearance-none block px-3 py-1.5 text-base font-light text-zinc-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-zinc-300 rounded transition ease-in-out m-0 focus:text-zinc-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+						<option selected>Categories</option>
+						{categories
+							? categories.map((cat, index) => (
+									<option key={cat.index} value={cat.categoryId}>
+										{cat.categoryName}
+									</option>
+							  ))
+							: ""}
+					</select>
 				</div>
-				<ul className={toggle ? "  text-gray-700 right-0 mr-3 mt-12 fixed " : "hidden"}>
-					<li classNames="">
-						<Link
-							to="/Login"
-							className="rounded-t  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
-							Log in
-						</Link>
-					</li>
-					<li className="">
-						<Link to="/signup" className=" text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
-							Register
-						</Link>
-					</li>
-					<li className="">
-						<p className="rounded-b  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
-							Upload a profile Photo
-						</p>
-					</li>
-				</ul>
+			</div>
+
+			<div className="flex items-center justify-between gap-x-4">
+				<div className="text-gray-200 flex text-center whitespace-nowrap rounded">
+					<Link to="/bookmark">
+						<BsHeart className="text-xl" />
+					</Link>
+					{bookmarkcount > 0 && (
+						<div className="text-white bg-zinc-800 w-5 h-5 p-1 flex items-center justify-center relative -left-0.5 -top-3 text-xs rounded-full">
+							{bookmarkcount}
+						</div>
+					)}
+				</div>
+
+				<div className="text-gray-200 flex  text-center whitespace-nowrap rounded">
+					<Link to="/cart">
+						<BsCart2 className="text-2xl " />
+					</Link>
+					{count > 0 && (
+						<div className="text-white bg-zinc-800 w-auto h-5 p-1 flex items-center justify-center relative -left-2 -top-3 text-xs rounded-full">
+							{count}
+						</div>
+					)}
+				</div>
+
+				<div onClick={() => setToggle(!toggle)} className="dropdown flex relative">
+					<div className="dropdown flex relative">
+						<BsPersonCircle className="text-xl" />
+						<svg
+							className="fill-current h-4 w-4 focus:block"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							onClick={() => setToggle(!toggle)}>
+							<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+						</svg>
+					</div>
+					<ul className={toggle ? "  text-gray-700 right-0 mr-3 mt-12 fixed " : "hidden"}>
+						<li classNames="">
+							<Link
+								to="/Login"
+								className="rounded-t  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+								Log in
+							</Link>
+						</li>
+						<li className="">
+							<Link
+								to="/signup"
+								className=" text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+								Register
+							</Link>
+						</li>
+						<li className="">
+							<p className="rounded-b  text-white bg-blue-400 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+								Upload a profile Photo
+							</p>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</header>
 	);
