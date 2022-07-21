@@ -161,10 +161,9 @@ module.exports = {
 			const page = req.query.page || 1;
 			const size = req.query.size || 10;
 			const search = req.query.search || "";
-			const orderBy = req.query.orderBy || "fullName";
-			const orderDir = req.query.orderDir || "DESC";
+			
 
-			const result = await exec("customer_pagination", { page, size, search, orderBy, orderDir });
+			const result = await exec("customer_pagination", { page, size, search, });
 			const count = result.recordsets[1][0];
 
 			return res.status(201).json({

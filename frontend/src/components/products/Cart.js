@@ -7,7 +7,7 @@ import CartProduct from "./CartProduct";
 
 function Cart() {
 	const itemsCount = useSelector((state) => state.cart.count);
-	const totalCount = 2;
+	const totalCount = useSelector((state) => state.cart.itemsCount);;
 	const totalPrice = 404040;
   return (
     <div className="container mx-auto ">

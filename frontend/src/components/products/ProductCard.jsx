@@ -8,14 +8,18 @@ import {
   BsHeartFill,
   BsCartFill,
 } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import Modal from "./Modal";
 import { IoIosCloseCircle } from 'react-icons/io'
 import { useDispatch, useSelector } from "react-redux";
-// import Modal from "./Modal";
+
 import {
   decrement,
   increment,
   addBookmark,
   removeBookmark,
+  itemsCountAdd,
+  itemsCountRemove,
 } from "../../redux/slices/cartReducer";
 import CurrencyFormat from "react-currency-format";
 
@@ -24,12 +28,13 @@ const ProductCard = ({ product }) => {
 
   const dispatch = useDispatch();
   const [cartAdded, setCartAdded] = React.useState(false);
-  const [count, setCount] = React.useState(1);
+  const [count, setCount] = React.useState(0);
   const [bookmark, setBookmark] = React.useState(false);
   const [showModal, setShowModal] = React.useState(false);
 
+  const bookmarkCount = useSelector((state) => state.cart.bookmarkCount);
   const bookmarkCount = 10;
-  React.useState(useSelector((state) => state.cart.bookmarkCount));
+//React.useState(useSelector((state) => state.cart.bookmarkCount));
 
 
   const price = 3900;
@@ -39,95 +44,31 @@ const ProductCard = ({ product }) => {
       dispatch(decrement());
     } else {
       setCartAdded(false);
+      setCount(count - 1);
+
+      dispatch(decrement());
     }
   };
   const addItems = () => {
     setCartAdded(true);
 
     setCount(count + 1);
+    dispatch(increment());
+  };
+
+  useEffect(() => {
+    if (cartAdded == true) {
+      dispatch(itemsCountAdd());
+    } else {
+      dispatch(itemsCountRemove());
+    }
+  }, [cartAdded]);
     dispatch(increment() + 1);
   };
 
   function Modal() {
 
-    return (
-      <>
-        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-
-          <div className="p-4 w-3/5 h-3/5 text-center bg-gray-100 shadow-lg shadow-gray-600 rounded-lg border sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <button onClick={() => setShowModal(false)} className="mb-2 text-3xl font-bold text-gray-900 dark:text-white float-right -top-8 relative">
-              <IoIosCloseCircle />
-            </button>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-1">
-                <img
-                  src={product.imageUrl}
-                  alt={product.productName}
-                  className="w-max h-full rounded"
-                />
-              </div>
-              <div className="col-span-1 space-y-4 md:flex-col md:gap-y-6 sm:flex sm:space-y-0 sm:space-x-4 relative">
-                <p className="text-zinc-900 mt-2 font-semibold capitalize">
-                  {product.productName}
-                </p>
-                <p className="text-zinc-500 text-sm my-0.5">
-                  {product.description}
-                </p>
-                <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full mt-3">
-                  <span className="flex items-center self-start gap-x-2">
-                    <p className="text-xl font-semibold">
-                      <CurrencyFormat
-                        value={product.price}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"Ksh"}
-                      />
-                    </p>
-                    <p className="bg-zinc-200 px-1.5 rounded-sm  text-zinc-600">-25%</p>
-                  </span>
-                  <span>
-                    <p className="line-through text-zinc-400 p-1.5 self-start">
-                      <CurrencyFormat
-                        value={price + Math.floor(Math.random() * 100)}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"Ksh"}
-                      />
-                    </p>
-                  </span>
-                </div>
-                {cartAdded ? (
-                  <div className="w-full mt-3 items-center flex justify-between bg-blue-600 text-white rounded-md font-light py-0.5 px-3 text-2xl">
-                    <BsFillFileMinusFill
-                      className="cursor-pointer hover:scale-x-150"
-                      onClick={removeItems}
-                    />
-                    {count}
-                    <BsFillFilePlusFill
-                      className="cursor-pointer hover:scale-x-150"
-                      onClick={addItems}
-                    />
-                  </div>
-                ) : (
-                  <button
-                    onClick={addItems}
-                    className="bg-blue-600 text-white capitalize w-full flex items-center justify-center gap-x-2 p-2 my-2 rounded-md hover:bg-blue-800 "
-                  >
-                    <span>
-                      <BsCartPlus />
-                    </span>
-                    <p>Add to Cart</p>
-                  </button>
-                )}
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </>
-    );
-  }
+   
 
   return (
     <>

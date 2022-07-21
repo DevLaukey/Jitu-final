@@ -262,9 +262,8 @@ GO
 CREATE OR ALTER PROCEDURE [dbo].[customer_pagination]
 	@page			INT,
 	@size			INT,
-	@search			NVARCHAR(100) = '%',
-	@orderBy		VARCHAR(MAX) = 'fullName',
-	@orderDir		VARCHAR(MAX) = 'DESC'
+	@search			NVARCHAR(100) = '%'
+	
 AS
 BEGIN
 	DECLARE @condition	VARCHAR(MAX);
@@ -287,3 +286,32 @@ BEGIN
 	
 END
 GO
+
+CREATE OR ALTER PROCEDURE [dbo].[product_pagination]
+	@page			INT,
+	@size			INT,
+	@search			NVARCHAR(100) = '%'
+AS
+BEGIN
+	DECLARE @condition	VARCHAR(MAX);
+	DECLARE @skip		INT;
+
+	SET @skip	= (@size * @page) - @size;
+
+    set @search=  LOWER(@search)
+
+    SELECT	* 
+    FROM [dbo].[Products] 
+    WHERE LOWER(productName) LIKE '%'+@search+'%' 
+    OR ([description]) LIKE  '%'+@search+'%' 
+    ORDER BY (select null)  ASC 
+    OFFSET	 @skip  ROWS FETCH NEXT @size ROWS ONLY		
+    
+    SELECT 	
+    	(SELECT COUNT(*) FROM [dbo].[Products] WHERE LOWER(productName) LIKE '%'+ @search +'%' OR ([description]) LIKE '%'+ @search +'%') AS [Filtered],
+    	(SELECT COUNT(*) FROM [dbo].[Products]) AS [Total] 
+	
+END
+GO
+
+EXEC product_pagination 1,3, 'silk'

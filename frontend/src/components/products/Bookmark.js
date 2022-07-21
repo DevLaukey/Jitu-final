@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import BookMarkItems from "./BookMarkItems";
 
 function Bookmark() {
-  const bookmarkcount = 9
-    // useSelector((state) => state.cart.bookmarkCount);
+  const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
 
   return (
     <div class="container shadow-md max-w-xl mx-auto w-full mb-60">
