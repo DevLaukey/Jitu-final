@@ -17,7 +17,7 @@ POST  http://localhost:3016/signin
 Content-Type: application/json
 
 {
-    "email": "localhostuser@yahoo.com",
+    "email": "localhstuser@yahoo.com",
     "password": "123456"
 }
 

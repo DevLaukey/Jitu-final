@@ -14,15 +14,14 @@ const ProductGrid = () => {
       setProducts(response.data.products);
       // total = response.data.filtered;
       // rows = response.data.records.length;
-      console.log(response.data.products);
     });
   }, []);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 p-2 bg-zinc-300">
       {products &&
-        products.map((product) => (
-          <ProductCard product={product} key={product.id} />
+        products.map((product, index) => (
+          <ProductCard product={product} key={index} />
         ))}
     </div>
   );

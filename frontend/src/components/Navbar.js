@@ -60,7 +60,7 @@ function Navbar() {
 						<option selected>Categories</option>
 						{categories
 							? categories.map((cat, index) => (
-									<option key={cat.index} value={cat.categoryId}>
+									<option key={index} value={cat.categoryId}>
 										{cat.categoryName}
 									</option>
 							  ))
