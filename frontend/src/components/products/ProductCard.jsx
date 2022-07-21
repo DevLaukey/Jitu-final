@@ -5,7 +5,7 @@ import {
   BsFillFilePlusFill,
   BsFillFileMinusFill,
 } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Modal from "./Modal";
 import {
   decrement,
@@ -23,7 +23,6 @@ const ProductCard = () => {
   const [bookmark, setBookmark] = React.useState(false);
 
   const [products, setProducts] = React.useState([]);
-  const [inStock, setInStock] = React.useState(false)
 
   const bookmarkCount = 10;
   // React.useState(useSelector((state) => state.cart.bookmarkCount));
@@ -81,7 +80,7 @@ const ProductCard = () => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     setBookmark(!bookmark);
-                    if (bookmark == true) {
+                    if (bookmark === true) {
                       dispatch(removeBookmark());
                     } else {
                       dispatch(addBookmark());

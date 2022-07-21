@@ -1,22 +1,6 @@
-CREATE OR ALTER PROCEDURE all_users
-AS
-BEGIN
-    SELECT *
-    FROM Users
-END
-GO
+-- Stored procedures for users
 
-CREATE OR ALTER PROCEDURE verify_exists
-    @email VARCHAR(100)
-AS
-BEGIN
-    SELECT *
-    FROM Users
-    WHERE email = @email
-END
-GO
-
-CREATE OR ALTER PROCEDURE insert_user
+CREATE OR ALTER PROCEDURE [dbo].[insert_user]
     (
     @fullName VARCHAR(100),
     @email VARCHAR(100),
@@ -28,10 +12,17 @@ BEGIN
         (fullName, email, telephone, [password])
     VALUES(@fullName, @email, @telephone, @password)
 END
+GO
 
-go
+CREATE OR ALTER PROCEDURE [dbo].[all_users]
+AS
+BEGIN
+    SELECT *
+    FROM Users
+END
+GO
 
-CREATE OR ALTER PROCEDURE update_user
+CREATE OR ALTER PROCEDURE [dbo].[update_user]
     (
     @fullName VARCHAR(100),
     @email VARCHAR(100),
@@ -44,9 +35,31 @@ WHERE email=@email
 END
 GO
 
+CREATE OR ALTER PROCEDURE [dbo].[user_status]
+ @email VARCHAR(100)
+AS
+BEGIN
+    SELECT isActive, isDeleted From Users
+WHERE email=@email
+END
+GO
+
+
+CREATE OR ALTER PROCEDURE [dbo].[verify_exists]
+    @email VARCHAR(100)
+AS
+BEGIN
+    SELECT *
+    FROM Users
+    WHERE email = @email
+END
+GO
+
+
+
 -- Stored procedures for categories
 
-CREATE OR ALTER PROCEDURE all_categories
+CREATE OR ALTER PROCEDURE [dbo].[all_categories]
 AS
 BEGIN
     SELECT *
@@ -54,17 +67,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE verify_category
-    @categoryName VARCHAR(100)
-AS
-BEGIN
-    SELECT *
-    FROM Categories
-    WHERE categoryName = (@categoryName)
-END
-GO
-
-CREATE OR ALTER PROCEDURE add_category
+CREATE OR ALTER PROCEDURE [dbo].[add_category]
     @categoryName VARCHAR(100)
 AS
 BEGIN
@@ -73,7 +76,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE update_category
+CREATE OR ALTER PROCEDURE [dbo].[update_category]
     (
     @categoryId INT,
     @categoryName VARCHAR(100)
@@ -85,10 +88,19 @@ WHERE categoryId=@categoryId
 END
 GO
 
+CREATE OR ALTER PROCEDURE [dbo].[verify_category]
+    @categoryName VARCHAR(100)
+AS
+BEGIN
+    SELECT *
+    FROM Categories
+    WHERE categoryName = (@categoryName)
+END
+GO
 
 -- Stored procedures for products
 
-CREATE OR ALTER PROCEDURE all_products
+CREATE OR ALTER PROCEDURE [dbo].[all_products]
 AS
 BEGIN
     SELECT *
@@ -96,17 +108,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE verify_product
-    @productName VARCHAR(100)
-AS
-BEGIN
-    SELECT *
-    FROM Products
-    WHERE productName = @productName
-END
-GO
-
-CREATE OR ALTER  PROCEDURE add_products(
+CREATE OR ALTER PROCEDURE [dbo].[add_products](
     @imageUrl VARCHAR(255),
     @productName VARCHAR(100),
     @price SMALLMONEY,
@@ -122,7 +124,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE update_product (
+CREATE OR ALTER PROCEDURE [dbo].[update_product] (
     @proddId INT,
     @imageUrl VARCHAR(255),
     @productName VARCHAR(100),
@@ -140,9 +142,20 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE [dbo].[verify_product]
+    @productName VARCHAR(100)
+AS
+BEGIN
+    SELECT *
+    FROM Products
+    WHERE productName = @productName
+END
+GO
+
+
 -- Stored procedures for Orders
 
-CREATE OR ALTER PROCEDURE all_orders
+CREATE OR ALTER PROCEDURE [dbo].[all_orders]
 AS
 BEGIN
     SELECT *
@@ -150,19 +163,9 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE verify_order
-    @orderid INT
-AS
-BEGIN
-    SELECT *
-    FROM Orders
-    WHERE OrderId = @orderid
-END
-GO
-
-CREATE OR ALTER  PROCEDURE create_order(
+CREATE OR ALTER PROCEDURE [dbo].[create_order](
     @userid INT,
-    @totalamount DECIMAL(12,2)
+    @totalamount DECIMAL(12,2) = 0
 )
 AS
 BEGIN
@@ -173,28 +176,32 @@ BEGIN
 END
 GO
 
--- Stored procedures for Order_Product
-
-CREATE OR ALTER PROCEDURE all_prod_orders
+CREATE OR ALTER PROCEDURE [dbo].[update_order](
+    @userid INT,
+    @orderid INT,
+    @quantity INT = 0,
+    @unitprice DECIMAL(12,2) = 0,
+    @totalamount DECIMAL(12,2) = 0
+)
 AS
 BEGIN
-    SELECT *
-    FROM Order_Product
+    UPDATE Orders SET TotalAmount = @totalamount
+    WHERE @orderid= OrderId and userId = @userid 
 END
 GO
 
-
-CREATE OR ALTER PROCEDURE verify_prodOrder
-    @prodOrderId INT
+CREATE OR ALTER PROCEDURE [dbo].[verify_order]
+    @orderid INT
 AS
 BEGIN
     SELECT *
-    FROM Order_Product
-    WHERE Order_Product_Id = @prodOrderId
+    FROM Orders
+    WHERE OrderId = @orderid
 END
 GO
 
-CREATE OR ALTER  PROCEDURE add_prodorder(
+-- Order Details
+CREATE OR ALTER PROCEDURE [dbo].[add_prodorder](
     @orderid INT,
     @productid INT,
     @unitprice DECIMAL(12,2),
@@ -209,9 +216,50 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE [dbo].[all_prod_orders]
+AS
+BEGIN
+    SELECT *
+    FROM Order_Product
+END
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[verify_prodOrder]
+    @prodOrderId INT
+AS
+BEGIN
+    SELECT *
+    FROM Order_Product
+    WHERE Order_Product_Id = @prodOrderId
+END
+GO
+
+
+CREATE OR ALTER PROCEDURE [dbo].[order_details]
+@userid INT,
+@productid INT,
+@quantity DECIMAL(12,2)
+
+AS
+DECLARE @orderID INT;
+DECLARE @unitprice DECIMAL(12,2);
+DECLARE @totalamount DECIMAL(12,2);
+BEGIN
+
+SET @unitprice = (SELECT price FROM Products WHERE productID = @productid)
+SET @totalamount =(@unitprice * @quantity)
+
+INSERT INTO Orders(UserId, TotalAmount) VALUES( @Userid, @totalamount);
+
+SET @orderID = (select TOP 1 OrderId  from Orders ORDER BY OrderID DESC)
+
+INSERT into Order_Product (OrderId,ProductID, UnitPrice, Quantity) VALUES(@orderID, @ProductId , @unitprice, @quantity)
+END
+
+GO
 
 -- Pagination/Search/Filter 
-CREATE   PROCEDURE [dbo].[customer_pagination]
+CREATE OR ALTER PROCEDURE [dbo].[customer_pagination]
 	@page			INT,
 	@size			INT,
 	@search			NVARCHAR(100) = '%',
@@ -223,16 +271,8 @@ BEGIN
 	DECLARE @skip		INT;
 
 	SET @skip	= (@size * @page) - @size;
-	-- SET @search = @search;
-
 
     set @search=  LOWER(@search)
-
-		-- SET @condition = 
-		-- 		LOWER([fullName])	LIKE ''%'' + ' + @search + ' + ''%'' OR
-		-- 			LOWER([email])		LIKE ''%'' + ' + @search + ' + ''%''
-		-- ;
-        -- set @condition= LOWER( '%'+@search+'%')  
 
     SELECT	* 
     FROM [dbo].[Users] 
