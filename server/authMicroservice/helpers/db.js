@@ -6,7 +6,6 @@ const dbConfig = {
 	password: "password",
 	database: "tangarine_furniture",
 	server: "localhost",
-	port: 1433,
 	pool: {
 		max: 10,
 		min: 0,
