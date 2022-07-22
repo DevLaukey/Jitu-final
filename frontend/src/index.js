@@ -19,7 +19,6 @@ import Footer from "./components/Footer";
 
 import DashBoard from "./components/admin/Main";
 import Customers from "./components/admin/Customers";
-import AddCustomer from "./components/admin/AddCustomer";
 import Products from "./components/admin/Products";
 import Orders from "./components/admin/Order";
 import Messages from "./components/admin/Messages";
@@ -34,31 +33,30 @@ import ProductGrid from "./components/products/productGrid";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <Provider store={store}>
-    <Router>
-      <Navbar />
+	<Provider store={store}>
+		<Router>
+			<Navbar />
 
-      <Routes>
-        <Route path="/" element={<ProtectedRoutes />}>
-          <Route path="/" element={<App isAdmin={true} />}>
-            <Route path="/" element={<DashBoard />} />
-            <Route path="admin/customers" element={<Customers />} />
-            <Route path="admin/customers/add-user" element={<AddCustomer />} />
-            <Route path="admin/products" element={<Products />} />
-            <Route path="admin/orders" element={<Orders />} />
-            <Route path="admin/messages" element={<Messages />} />
-            <Route path="admin/settings" element={<Settings />} />
-          </Route>
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/bookmark" element={<Bookmark />} />
-        </Route>
+			<Routes>
+				<Route path="/" element={<ProtectedRoutes />}>
+					<Route path="/" element={<App isAdmin={true} />}>
+						<Route path="/" element={<DashBoard />} />
+						<Route path="admin/customers" element={<Customers />} />
+						<Route path="admin/products" element={<Products />} />
+						<Route path="admin/orders" element={<Orders />} />
+						<Route path="admin/messages" element={<Messages />} />
+						<Route path="admin/settings" element={<Settings />} />
+					</Route>
+					<Route path="/cart" element={<Cart />} />
+					<Route path="/bookmark" element={<Bookmark />} />
+				</Route>
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<SignUp />} />
 
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Footer />
-    </Router>
-  </Provider>
+				<Route path="*" element={<Error />} />
+			</Routes>
+			<Footer />
+		</Router>
+	</Provider>
 );
