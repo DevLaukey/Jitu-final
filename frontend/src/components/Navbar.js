@@ -27,7 +27,7 @@ function Navbar() {
   useEffect(() => {
     setCategories([]);
     axios.get(`${baseURL}/categories`).then((response) => {
-      setCategories(response);
+      setCategories(response.data.categories);
     });
   }, []);
   console.log(categories);
