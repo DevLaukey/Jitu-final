@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { BsHeart, BsCart2, BsPersonCircle, BsSearch } from "react-icons/bs";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BsCart2, BsHeart, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ProductGrid from "./products/productGrid";
 import { searchQuery } from "../redux/slices/productReducer";
-import axios from "axios";
+
 function Navbar() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
+  const [categories, setCategories] = useState([]);
   const count = useSelector((state) => state.cart.itemsCount);
   const bookmarkcount = useSelector((state) => state.cart.bookmarkCount);
   const [searchInput, setSearchInput] = useState(false);
 
-  const [categories, setCategories] = useState([]);
   const search = () => {
     dispatch(searchQuery(searchInput));
   };
@@ -27,13 +27,12 @@ function Navbar() {
   useEffect(() => {
     setCategories([]);
     axios.get(`${baseURL}/categories`).then((response) => {
-      setCategories(response);
+      setCategories(response.data.categories);
     });
   }, []);
-  console.log(categories);
-  
+
   return (
-    <header className="text-white flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-400">
+    <header className="text-white flex sticky z-50 top-0 left-0 right-0 space-x-4 items-center justify-between align-middle w-full  p-4 bg-blue-600">
       <div className="text-center ">
         <Link to="/">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -52,8 +51,7 @@ function Navbar() {
           </div>{" "}
         </Link>
       </div>
-      {/* <div className="flex items-center justify-center"> */}
-      <div className="input-group flex items-items justify-center">
+      <div className="input-group flex items-items justify-center w-max">
         <input
           type="search"
           className="form-control  flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal rounded-lg transition ease-in-out m-0 bg-zinc-100 text-zinc-600 focus:outline-none"
@@ -68,7 +66,6 @@ function Navbar() {
         >
           <BsSearch onClick={search} />
         </span>
-        {/* </div> */}
       </div>
       <div className="flex justify-center">
         <div className=" xl:w-96">
